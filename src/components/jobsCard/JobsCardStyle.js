@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
+        padding: 6,
         backgroundColor: "white",
         borderWidth: 1,
         borderColor: "gray",
@@ -15,17 +15,17 @@ export default StyleSheet.create({
     },
     name: {
         fontWeight: "bold",
-        fontSize: 22,
+        fontSize: 20,
 
     },
     company: {
-        fontSize: 20,
+        fontSize: 18,
         marginVertical: 10
     },
     level: {
         color: "red",
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 16,
         textAlign: 'right', alignSelf: 'stretch'
     }
 

@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, SafeAreaView, FlatList } from "react-native"
+import { Text, View, SafeAreaView, FlatList, ScrollView } from "react-native"
 import styles from "./JobsStyle"
 import JobsCard from "../../components/jobsCard/JobsCard"
+import useFetch from "../../hooks/useFetch";
+import Loading from "../../components/loading/Loading"
+import Error from "../../components/error/Error"
 
 
-const Jobs = () => {
+
+const Jobs = ({ navigation }) => {
+
+    const { loading, data, error } = useFetch("https://www.themuse.com/api/public/jobs?page=1")
+
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <Error />;
+    }
+    const handleSelect = (contents) => {
+        navigation.navigate("JobDetails", contents)
+    }
 
 
     const renderItem = ({ item }) => (
-        <JobsCard name={item.name} company={item.company.name} location={item.locations} level={item.levels} />
-
+        <JobsCard name={item.name} company={item.company.name} location={item.locations} level={item.levels} onPress={() => handleSelect(item.contents)} />
     );
-
-
 
     return (
         <SafeAreaView style={styles.container}>
+
             <FlatList
-                data={DATA}
+                data={data.results}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
+
         </SafeAreaView>
     );
 };

@@ -7,7 +7,6 @@ const Jobs = ({ location }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{location.name}</Text>
-
         </View>
     );
 };
