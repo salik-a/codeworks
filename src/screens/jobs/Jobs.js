@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, SafeAreaView, FlatList, ScrollView } from "react-native"
+import React from "react";
+import { SafeAreaView, FlatList } from "react-native"
 import styles from "./JobsStyle"
 import JobsCard from "../../components/jobsCard/JobsCard"
 import useFetch from "../../hooks/useFetch";
@@ -26,7 +26,7 @@ const Jobs = ({ navigation }) => {
 
 
     const renderItem = ({ item }) => (
-        <JobsCard name={item.name} company={item.company.name} location={item.locations} level={item.levels} onPress={() => handleSelect(item.contents)} />
+        <JobsCard name={item.name} company={item.company.name} location={item.locations} level={item.levels} onPress={() => handleSelect(item.id)} />
     );
 
     return (
