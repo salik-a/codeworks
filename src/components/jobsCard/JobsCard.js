@@ -2,10 +2,10 @@ import React from "react";
 import { Text, View, FlatList, TouchableOpacity } from "react-native"
 import styles from "./JobsCardStyle"
 import LocationCard from "../locationCard/LocationCard"
+import Button from "../button/Button";
 
 
-
-const Jobs = ({ name, company, location, level, onPress }) => {
+const Jobs = ({ name, company, location, level, onPress, button, onButtonPress }) => {
 
     const renderItem = ({ item }) => (
         <LocationCard location={item} />
@@ -23,7 +23,9 @@ const Jobs = ({ name, company, location, level, onPress }) => {
                 keyExtractor={item => item.index}
             />
             <Text style={styles.level}>{level[0].name}</Text>
-
+            {button ? (
+                <Button text={"REMOVE"} onPress={onButtonPress} iconName={"trash-can"} />
+            ) : (null)}
         </TouchableOpacity>
     );
 };

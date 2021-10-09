@@ -4,5 +4,9 @@ export default StyleSheet.create({
     container: {
         flex: 1,
     },
+    buttons: {
+        justifyContent: "space-around",
+        flexDirection: "row"
+    }
     
 });

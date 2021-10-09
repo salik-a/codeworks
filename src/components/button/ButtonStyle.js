@@ -13,7 +13,7 @@ export default StyleSheet.create({
         fontWeight: "bold",
         fontSize: 18,
         color: "white",
-        marginLeft: 5
+        marginHorizontal: 5
     },
     row: {
         flexDirection: "row"

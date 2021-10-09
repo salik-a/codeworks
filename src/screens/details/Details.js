@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, FlatList, ScrollView } from "react-native"
 import styles from "./DetailsStyle"
 import useFetch from "../../hooks/useFetch";
@@ -6,12 +6,32 @@ import Loading from "../../components/loading/Loading"
 import Error from "../../components/error/Error"
 import HTMLView from 'react-native-htmlview';
 import Button from "../../components/button/Button";
+import { useDispatch } from "react-redux";
+import Toast from 'react-native-toast-message';
+
 
 const Details = ({ route }) => {
-    const id = route.params;
 
-    const { loading, data, error } = useFetch(`https://www.themuse.com/api/public/jobs/${id}`);
-    console.log(data)
+    const dispatch = useDispatch()
+    const { loading, data, error } = useFetch(`https://www.themuse.com/api/public/jobs/${route.params}`);
+
+    const handleAddFavorites = async () => {
+
+        dispatch({ type: "ADD_FAVORITES", payload: { data } })
+        Toast.show({
+            type: 'success',
+            text1: 'FAVORITE SUCCESS',
+            text2: 'This job added to favorites.'
+        });
+    }
+    const handleSubmit = () => {
+
+        Toast.show({
+            type: 'success',
+            text1: 'SUBMIT SUCCESS',
+            text2: 'Application sent.'
+        });
+    }
 
     if (loading) {
         return <Loading />;
@@ -43,8 +63,8 @@ const Details = ({ route }) => {
                 />
             </ScrollView>
             <View style={styles.buttons}>
-                <Button text={"Submit"} iconName={"logout"} />
-                <Button text={"Favorite Job"} iconName={"heart"} />
+                <Button text={"Submit"} iconName={"logout"} onPress={handleSubmit} />
+                <Button text={"Favorite Job"} iconName={"heart"} onPress={handleAddFavorites} />
             </View>
 
         </View>
